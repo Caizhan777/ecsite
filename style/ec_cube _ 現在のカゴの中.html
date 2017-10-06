@@ -1,0 +1,336 @@
+
+<!doctype html>
+<html lang="ja">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>ec_cube / 現在のカゴの中</title>
+    <meta name="robots" content="noindex">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="/eccube-3.0.15/html/template/default/img/common/favicon.ico">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="slick.css">
+    <link rel="stylesheet" href="default.css">
+<!-- for original theme CSS -->
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script>window.jQuery || document.write(
+        '<script src="jquery-1.11.3.min.js"><\/script>'
+    )
+    </script>
+
+
+</head>
+
+
+<body id="page_cart" class="cart_page">
+<div id="wrapper">
+    <header id="header">
+        <div class="container-fluid inner">
+<!-- ▼ロゴ -->
+            <div class="header_logo_area">
+                <p class="copy">くらしを楽しむライフスタイルグッズ</p>
+                <h1 class="header_logo">
+                    <a href="http://localhost/eccube-3.0.15/html/">ec_cube</a>
+                </h1>
+            </div>
+
+        <!-- ▲ロゴ -->
+    <!-- ▼カゴの中 -->
+            <div id="cart_area">
+                <p class="clearfix cart-trigger">
+                    <a href="#cart">
+                        <svg class="cb cb-shopping-cart">
+                            <use xlink:href="#cb-shopping-cart"/>
+                        </svg>
+                        <span class="badge">1</span>
+                        <svg class="cb cb-close">
+                            <use xlink:href="#cb-close"/>
+                        </svg>
+                    </a>
+                    <span class="cart_price pc">合計
+                        <span class="price">¥ 118,800</span>
+                    </span>
+                </p>
+                <div id="cart" class="cart">
+                    <div class="inner">
+                        <div class="item_box clearfix">
+                            <div class="item_photo">
+                                <img src="fork-1.jpg" alt="ディナーフォーク">
+                            </div>
+                            <dl class="item_detail">
+                                <dt class="item_name">ディナーフォーク</dt>
+                                <dd class="item_pattern small">材質：プラチナ<br>サイズ：150cm</dd>
+                                <dd class="item_price">¥ 118,800<span class="small">税込</span></dd>
+                                <dd class="item_quantity form-group form-inline">数量：1</dd>
+                            </dl>
+                        </div><!--/item_box-->
+                        <p class="cart_price sp">合計
+                            <span class="price">¥ 118,800</span>
+                        </p>
+
+                        <div class="btn_area">
+                            <ul>
+                                <li>
+                                    <a href="http://localhost/eccube-3.0.15/html/cart" class="btn btn-primary">カートへ進む</a>
+                                </li>
+                                <li>
+                                    <button type="button" class="btn btn-default btn-sm cart-trigger">キャンセル</button>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+                <!-- ▲カゴの中 -->
+    <!-- ▼商品検索 -->
+            <div class="drawer_block pc header_bottom_area">
+                <div id="search" class="search">
+                    <form method="get" id="searchform" action="/eccube-3.0.15/html/products/list">
+                        <div class="search_inner">
+                            <select id="category_id" name="category_id" class="form-control">
+                                <option value="">全ての商品</option>
+                                <option value="2">インテリア</option>
+                                <option value="1">キッチンツール</option>
+                                <option value="4">　調理器具</option>
+                                <option value="3">　食器</option>
+                                <option value="5">　　フォーク</option>
+                                <option value="6">新入荷</option>
+                            </select>
+                            <div class="input_search clearfix">
+                                <input type="search" id="name" name="name" maxlength="50" placeholder="キーワードを入力" class="form-control" />
+                                <button type="submit" class="bt_search">
+                                    <svg class="cb cb-search">
+                                        <use xlink:href="#cb-search" />
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="extra-form"></div>
+                    </form>
+                </div>
+            </div>
+                <!-- ▲商品検索 -->
+    <!-- ▼ログイン -->
+            <div id="member" class="member drawer_block pc">
+                <ul class="member_link">
+                    <li>
+                        <a href="http://localhost/eccube-3.0.15/html/mypage">
+                            <svg class="cb cb-user-circle"><use xlink:href="#cb-user-circle" /></svg>マイページ
+                        </a>
+                    </li>
+                    <li>
+                        <a href="http://localhost/eccube-3.0.15/html/mypage/favorite">
+                            <svg class="cb cb-heart-circle"><use xlink:href="#cb-heart-circle"></use></svg>お気に入り
+                        </a>
+                    </li>
+                    <li>
+                        <a href="http://localhost/eccube-3.0.15/html/logout">
+                            <svg class="cb cb-lock-circle"><use xlink:href="#cb-lock-circle" /></svg>ログアウト
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+<!-- ▲ログイン -->
+    <!-- ▼カテゴリ -->
+
+            <nav id="category" class="drawer_block pc">
+                <ul class="category-nav">
+                    <li>
+                        <a href="http://localhost/eccube-3.0.15/html/products/list?category_id=2">インテリア</a>
+                    </li>
+
+                    <li>
+                        <a href="http://localhost/eccube-3.0.15/html/products/list?category_id=1">キッチンツール</a>
+                        <ul>
+                            <li>
+                                <a href="http://localhost/eccube-3.0.15/html/products/list?category_id=4">調理器具</a>
+                            </li>
+
+                            <li>
+                                <a href="http://localhost/eccube-3.0.15/html/products/list?category_id=3">食器</a>
+                                <ul>
+                                    <li>
+                                        <a href="http://localhost/eccube-3.0.15/html/products/list?category_id=5">フォーク</a>
+                                    </li>
+
+                                        </ul>
+                            </li>
+
+                        </ul>
+                    </li>
+
+                    <li>
+                        <a href="http://localhost/eccube-3.0.15/html/products/list?category_id=6">新入荷</a>
+                    </li>
+
+                </ul> <!-- category-nav -->
+            </nav>
+
+<!-- ▲カテゴリ -->
+
+            <p id="btn_menu"><a class="nav-trigger" href="#nav">Menu<span></span></a></p>
+        </div>
+    </header>
+
+    <div id="contents" class="theme_main_only">
+
+        <div id="contents_top"></div>
+
+        <div class="container-fluid inner">
+
+            <div id="main">
+
+                <div id="main_middle">
+                    <h1 class="page-heading">ショッピングカート</h1>
+                        <div id="cart" class="container-fluid">
+                            <div id="cart_box" class="row">
+                                <div id="cart_box__body" class="col-md-10 col-md-offset-1">
+                                    <div id="cart_box__flow_state" class="flowline step3">
+                                        <ul id="cart_box__flow_state_list" class="clearfix">
+                                            <li class="active">
+                                                <span class="flow_number">1</span>
+                                                <br>カートの商品
+                                            </li>
+                                            <li><span class="flow_number">2</span>
+                                                <br>ご注文内容確認
+                                            </li>
+                                            <li><span class="flow_number">3</span><br>完了
+                                            </li>
+                                        </ul>
+                                    </div>
+
+
+                                    <form name="form" id="form_cart" method="post" action="http://localhost/eccube-3.0.15/html/cart">
+                                        <p id="cart_item__info" class="message">
+                                            商品の合計金額は「<strong>¥ 118,800</strong>」です。
+                                        </p>
+                                        <div id="cart_item_list" class="cart_item table">
+                                            <div class="thead">
+                                                <ol id="cart_item_list__header">
+                                                    <li id="cart_item_list__header_cart_remove">削除</li>
+                                                    <li id="cart_item_list__header_product_detail">商品内容</li>
+                                                    <li id="cart_item_list__header_total">数量</li>
+                                                    <li id="cart_item_list__header_sub_total">小計</li>
+                                                </ol>
+                                            </div>
+                                            <div id="cart_item_list__body" class="tbody">
+
+
+                                                <div id="cart_item_list__item" class="item_box tr">
+                                                    <div id="cart_item_list__cart_remove" class="icon_edit td">
+                                                        <a href="http://localhost/eccube-3.0.15/html/cart/remove/1" token-for-anchor='i11Vg9AqO2GQlXhCVWZIqCqNPpWh5EKCASg4b6w1eqE' data-method="put" data-message="カートから商品を削除してもよろしいですか?">
+                                                            <svg class="cb cb-close"><use xlink:href="#cb-close" /></svg>
+                                                        </a>
+                                                    </div>
+                                                    <div class="td table">
+                                                        <div id="cart_item_list__product_image" class="item_photo">
+                                                            <a  target="_blank" href="http://localhost/eccube-3.0.15/html/products/detail/1">
+                                                                <img src="fork-1.jpg" alt="ディナーフォーク" />
+                                                            </a>
+                                                        </div>
+                                                        <dl class="item_detail">
+                                                            <dt id="cart_item_list__product_detail" class="item_name text-default">
+                                                                <a target="_blank" href="http://localhost/eccube-3.0.15/html/products/detail/1">ディナーフォーク</a>
+                                                            </dt>
+                                                            <dd id="cart_item_list__class_category" class="item_pattern small">材質：プラチナ
+                                                                <br>サイズ：150cm
+                                                            </dd>
+                                                            <dd id="cart_item_list__item_price" class="item_price">￥118,800</dd>
+                                                            <dd id="cart_item_list__item_subtotal" class="item_subtotal">小計：￥118,800</dd>
+                                                        </dl>
+                                                    </div>
+                                                    <div id="cart_item_list__quantity" class="item_quantity td">1
+                                                        <ul id="cart_item_list__quantity_edit">
+                                                            <li>
+                                                                <span><svg class="cb cb-minus"><use xlink:href="#cb-minus" /></svg></span>
+                                                            </li>
+                                                            <li>
+                                                                <a id="cart_item_list__up" href="http://localhost/eccube-3.0.15/html/cart/up/1" token-for-anchor='i11Vg9AqO2GQlXhCVWZIqCqNPpWh5EKCASg4b6w1eqE' data-method="put" data-confirm="false"><svg class="cb cb-plus"><use xlink:href="#cb-plus" /></svg></a>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                    <div id="cart_item_list__subtotal" class="item_subtotal td">￥118,800</div>
+                                                </div><!--/item_box-->
+                                            </div>
+                                        </div><!--/cart_item-->
+                                        <div class="total_box">
+                                            <dl id="total_box__total_price" class="total_price">
+                                                <dt>合計：</dt>
+                                                <dd class="text-primary">￥118,800</dd>
+                                            </dl>
+                                            <div id="total_box__user_action_menu" class="btn_group">
+
+                                                <p id="total_box__next_button" >
+                                                    <a href="/eccube-3.0.15/html/cart/buystep" class="btn btn-primary btn-block">レジに進む</a>
+                                                </p>
+                                                <p id="total_box__top_button">
+                                                    <a  href="http://localhost/eccube-3.0.15/html/" class="btn btn-info btn-block">お買い物を続ける</a>
+                                                </p>
+                                            </div>
+                                        </div>
+
+                                    </form>
+
+                                </div><!-- /.col -->
+                            </div><!-- /.row -->
+                        </div>
+                </div>
+            </div>
+        </div>
+
+
+
+    </div>
+
+    <footer id="footer">
+<!-- ▼フッター -->
+        <div class="container-fluid inner">
+            <ul>
+                <li><a href="http://localhost/eccube-3.0.15/html/help/about">当サイトについて</a></li>
+                <li><a href="http://localhost/eccube-3.0.15/html/help/privacy">プライバシーポリシー</a></li>
+                <li><a href="http://localhost/eccube-3.0.15/html/help/tradelaw">特定商取引法に基づく表記</a></li>
+                <li><a href="http://localhost/eccube-3.0.15/html/contact">お問い合わせ</a></li>
+            </ul>
+            <div class="footer_logo_area">
+                <p class="logo"><a href="http://localhost/eccube-3.0.15/html/">ec_cube</a></p>
+                <p class="copyright">
+                    <small>copyright (c) ec_cube all rights reserved.</small>
+                </p>
+            </div>
+        </div>
+
+
+<!-- ▲フッター -->
+
+
+    </footer>
+
+</div>
+
+<div id="drawer" class="drawer sp"></div>
+
+
+
+<div class="overlay"></div>
+
+<script src="bootstrap.custom.min.js"></script>
+<script src="slick.min.js"></script>
+<script src="function.js"></script>
+<script src="eccube.js"></script>
+<script>
+$(function () {
+    $('#drawer').append($('.drawer_block').clone(true).children());
+    $.ajax({
+        url: 'svg.html',
+        type: 'GET',
+        dataType: 'html',
+    }).done(function(data){
+        $('body').prepend(data);
+    }).fail(function(data){
+    });
+});
+</script>
+</body>
+</html>
