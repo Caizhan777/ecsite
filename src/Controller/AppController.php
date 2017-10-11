@@ -63,7 +63,7 @@ class AppController extends Controller
 
         // Allow the display action so our pages controller
         // continues to work.
-        $this->Auth->allow(['display']);
+        $this->Auth->allow(['index']);
     }
 
     public function isAuthorized($user)
