@@ -7,6 +7,11 @@ use App\Form\SearchProductForm;
 class ProductsController extends AppController
 {
 
+  public function initialize()
+  {
+      parent::initialize();
+      $this->Auth->allow(['index','view','edit']);
+  }
 
     public function index()
     {
@@ -49,25 +54,40 @@ class ProductsController extends AppController
         // var_dump($product);
         // exit();
         if($this->request->is('post')) {
-            var_dump($this->request);
-            exit();
-            if($this->request->getData("product_name")){
-              $product = $this->Products->patchEntity($products, $this->request->getData());
-              $session = $this->request->session();
+          if($this->request->getData("product_name")){
+
+            $session = $this->request->session();
+
+            if($session->check('Cart.info')) {
+
+              $cart = $this->request->session()->read('Cart.info');
+
+              if($cart['Product.id'] == $product->id) {
+
+                $cart['Buy.num'] = $this->requset->getData("buy_num");
+                $session->write(['Cart.info' => $cart]);
+              } else {
+                $cart[] = array([
+                  'Product.id' => "$product->id",
+                  'Buy.num' => $this->request->getData("buy_num"),
+                  'Product.name' => "$product->product_name"
+                ]);
+                $this->request->session()->write('Cart.info',$cart);
+             }
+          }
               $cart = array([
                 'Product.id' => "$product->id",
-                'Buy.num' => $this->request->getData("buy_num")
-               ]);
-              // var_dump($cart);
-              //  exit();
-              //
-              $session->write([
-                'Cart.info' => $cart
+                'Buy.num' => $this->request->getData("buy_num"),
+                'Product.name' => "$product->product_name"
               ]);
-            } else {
-                $product = $this->paginate($this->Products);
+
+              $session->write(['Cart.info' => $cart]);
+
+              return $this->redirect(['controller' => 'Carts','action' => 'index']);
             }
+            $this->Flash->error(__('jia ru gou wu che shi bai .'));
          }
+
          $this->set('product', $product);
          $this->set('_serialize', ['product']);
     }
