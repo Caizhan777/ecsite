@@ -42,7 +42,11 @@
 				?> 
 			<tr>
 				<td>
-					<?= $this->Html->link(__('删除'), ['action' => 'delete',$i]) ?>
+					<?= $this->Html->image('shanchu.png', [
+						'alt' => 'delete',
+						'url' => ['action' => 'delete',$i]
+						]) ?>
+					
 				</td>
 				<td>
 					<?= $cart[$i]['name'] ?>
@@ -50,8 +54,14 @@
 				
 				<td>
 					<?= $cart[$i]['buy.num'] ?>
-					<?= $this->Html->link(__('添加'), ['action' => 'addreduce','add',$i]) ?>
-					<?= $this->Html->link(__('减少'), ['action' => 'addreduce','reduce',$i]) ?>
+					<?= $this->Html->image('increase.png', [
+						'alt' => 'addreduce',
+						'url' => ['action' => 'addreduce','add',$i]
+						]) ?>
+					<?= $this->Html->image('decrease.png', [
+						'alt' => 'addreduce',
+						'url' => ['action' => 'addreduce','reduce',$i]
+						]) ?>
 				</td>
 				
 				<td>
@@ -61,9 +71,28 @@
 			<?php } ?>
 			<tr>
 				<td>
+					<?= "合计" ?>
+				</td>
+				<td>
+				</td>
+				<td>
+				</td>
+				<td>
 					<?= $jiage ?>
 				</td>
 			</tr>
-
+			<tr>
+				<td>
+				</td>
+				<td>
+				</td>
+				<td>
+					<h3><?= $this->Html->image('xiadan.jpg', [
+						'alt' => 'obtain',
+						'url' => ['action' => 'obtain']
+						]) ?></h3>
+				</td>
+			</tr>
+			
 		</tbody>
 	</table>
