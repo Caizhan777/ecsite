@@ -137,11 +137,18 @@ class cardsController extends AppController
 
     public function delete($id=null){
         $session = $this->request->session();
+        // $t=time();
+        
+        // if($t<$time+24*3600){
+        //     die("24小时之内只能访问一次");
+        // }
+
         //下面是要获取的session数据
         $ling=$session->read('cart.info');
+
         if(isset($ling[$id])){
             if($this->ling($ling, $id)){
-                $this->Flash->error(__('删除成功'));
+                $this->Flash->success(__('删除成功'));
                 return $this->redirect(['action' => 'Obtain']);
             }
             $this->Flash->error(__('删除失败'));
@@ -165,10 +172,19 @@ class cardsController extends AppController
         // //打印数据
         // var_dump($this->request->session()->read($aa));
     }
+
+    
+
     public function addreduce($judge=null,$id=null){
+        $session = $this->request->session();
+        $cart=$this->request->session()->read('cart.info');
+        if($cart==null){
+            $this->Flash->error(__('你的购物车信息被外星人带走了'));
+            return $this->redirect(['action' => 'Obtain']);
+        }
 
         if($judge=='add'){
-            $session = $this->request->session();
+            
             if($session->check('cart.info')){
                 //aa是一个零时的值，你看着修改一下
                 $aa=$this->request->session()->read('cart.info');
@@ -176,26 +192,24 @@ class cardsController extends AppController
                 $aa[$id]['buy.num']=$aa[$id]['buy.num']+1;
                 //www是session的名字，看您喜欢的修改
                 $this->request->session()->write('cart.info',$aa);
-                $this->Flash->error(__('修改成功'));
+                $this->Flash->success(__('修改成功'));
                 return $this->redirect(['action' => 'Obtain']);
             }
-        
-            
-              
+
         }elseif($judge=='reduce') {
-            $session = $this->request->session();
+            
             if($session->check('cart.info')){
                 //aa是一个零时的值，你看着修改一下
                 $aa=$this->request->session()->read('cart.info');
                 //$id是你选的物品的id
                 if($aa[$id]['buy.num']==1){
-                    $this->Flash->error(__('操作错误'));
+                    $this->Flash->error(__('亲，数量不能低于1个哟'));
                     return $this->redirect(['action' => 'Obtain']);
                 }
                 $aa[$id]['buy.num']=$aa[$id]['buy.num']-1;
                 //www是session的名字，看您喜欢的修改
                 $this->request->session()->write('cart.info',$aa);
-                $this->Flash->error(__('修改成功'));
+                $this->Flash->success(__('修改成功'));
                 return $this->redirect(['action' => 'Obtain']);
             }
         
