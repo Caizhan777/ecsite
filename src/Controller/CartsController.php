@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Controller;
 
 use App\Controller\AppController;
@@ -13,7 +12,7 @@ use App\Model\Table\RakumaTable;
 use App\Model\Table\FuriruTable;
 
 use App\Model\Table\cardTable;
-class cardsController extends AppController
+class CartsController extends AppController
 {
 	/**
     *by lin
@@ -137,11 +136,7 @@ class cardsController extends AppController
 
     public function delete($id=null){
         $session = $this->request->session();
-        // $t=time();
         
-        // if($t<$time+24*3600){
-        //     die("24小时之内只能访问一次");
-        // }
 
         //下面是要获取的session数据
         $ling=$session->read('cart.info');

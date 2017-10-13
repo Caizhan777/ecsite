@@ -1,7 +1,7 @@
 <?php	?>
 <nav class="large-3 medium-4 columns" id="actions-sidebar">
     <ul class="side-nav">
-        <li><?= $this->Html->link(__('返回主页'), ['controller' =>'cards','action' => 'obtain']) ?></li>
+        <li><?= $this->Html->link(__('返回主页'), ['controller' =>'Carts','action' => 'obtain']) ?></li>
     </ul>
 </nav>
 
