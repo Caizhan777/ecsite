@@ -13,6 +13,8 @@ class CartsController extends AppController
       $this->Auth->allow(['index']);
   }
   public function index(){
-
+      //
+      $carts = $this->request->session()->read('Cart.info');
+      var_dump($carts);
   }
 }

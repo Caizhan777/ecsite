@@ -10,7 +10,7 @@ class ProductsController extends AppController
   public function initialize()
   {
       parent::initialize();
-      $this->Auth->allow(['index','view','edit']);
+      $this->Auth->allow(['index','view','edit','add']);
   }
 
     public function index()
@@ -51,42 +51,58 @@ class ProductsController extends AppController
         $product = $this->Products->get($id, [
             'contain' => []
         ]);
+
         // var_dump($product);
         // exit();
         if($this->request->is('post')) {
-          if($this->request->getData("product_name")){
+          if($this->request->getData("id")){
 
             $session = $this->request->session();
 
-            if($session->check('Cart.info')) {
+            if($session->check('Cart.info')){
+                $carts = $session->read('Cart.info');
 
-              $cart = $this->request->session()->read('Cart.info');
+                $has_one = false;
+                foreach($carts as $cart){
+                    if($cart['Product_id'] == $id){
 
-              if($cart['Product.id'] == $product->id) {
+                        $cart['Buy_num'] += $this->request->getData("buy_num");
+                        $has_one = true;
 
-                $cart['Buy.num'] = $this->requset->getData("buy_num");
-                $session->write(['Cart.info' => $cart]);
-              } else {
-                $cart[] = array([
-                  'Product.id' => "$product->id",
-                  'Buy.num' => $this->request->getData("buy_num"),
-                  'Product.name' => "$product->product_name"
-                ]);
-                $this->request->session()->write('Cart.info',$cart);
-             }
-          }
-              $cart = array([
-                'Product.id' => "$product->id",
-                'Buy.num' => $this->request->getData("buy_num"),
-                'Product.name' => "$product->product_name"
+                        break;
+                    }
+                }
+
+                if(!$has_one) {
+                  $carts[] = array(
+                    'Product_id' => "$product->id",
+                    'Buy_num' => $this->request->getData("buy_num"),
+                    'Product_name' => "$product->product_name",
+                    'Product_price' => "$product->product_price"
+                  );
+                }
+
+
+                $session->write('Cart.info',$carts);
+
+
+            }else{
+
+              $carts = array([
+                'Product_id' => "$product->id",
+                'Buy_num' => $this->request->getData("buy_num"),
+                'Product_name' => "$product->product_name",
+                'Product_price' => "$product->product_price"
               ]);
+              $session->write('Cart.info',$carts);
 
-              $session->write(['Cart.info' => $cart]);
-
-              return $this->redirect(['controller' => 'Carts','action' => 'index']);
             }
-            $this->Flash->error(__('jia ru gou wu che shi bai .'));
-         }
+
+            return $this->redirect(['controller' => 'Carts','action' => 'index']);
+
+          }
+          $this->Flash->error(__('jia ru gou wu che shi bai .'));
+        }
 
          $this->set('product', $product);
          $this->set('_serialize', ['product']);
