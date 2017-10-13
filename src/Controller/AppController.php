@@ -64,6 +64,7 @@ class AppController extends Controller
         ]);
 
         $this->Auth->allow();
+
     }
 
     public function isAuthorized($user)
