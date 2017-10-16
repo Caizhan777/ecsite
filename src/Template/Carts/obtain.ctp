@@ -95,7 +95,7 @@
 				<td>
 					<h3><?= $this->Html->image('xiadan.jpg', [
 						'alt' => 'obtain',
-						'url' => ['controller' => 'Orders','action' => 'confirm']
+						'url' => ['controller' => 'Orders','action' => 'comfirm']
 						]) ?></h3>
 				</td>
 			</tr>

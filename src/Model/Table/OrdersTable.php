@@ -40,6 +40,50 @@ class OrdersTable extends Table {
      * @return Validator
      */
     public function validationDefault(Validator $validator) {
+      $validator
+          ->integer('id')
+          ->allowEmpty('id', 'create');
+
+      $validator
+          ->integer('user_id')
+          ->allowEmpty('user_id', 'create');
+
+      $validator
+          ->requirePresence('order_email', 'create')
+          ->notEmpty('user_email');
+
+
+      $validator
+          ->requirePresence('credit_code', 'create')
+          ->notEmpty('credit_code');
+
+      $validator
+          ->requirePresence('order_tel', 'create')
+          ->notEmpty('user_tel');
+
+      $validator
+          ->requirePresence('order_address', 'create')
+          ->notEmpty('user_address');
+
+      $validator
+          ->requirePresence('order_name', 'create')
+          ->notEmpty('user_name');
+
+      $validator
+          ->dateTime('updata')
+          ->allowEmpty('updata', 'create');
+
+
+      $validator
+          ->integer('del_flg')
+          ->requirePresence('del_flg', 'create')
+          ->notEmpty('del_flg');
+
+      $validator
+          ->integer('buy_status')
+          ->requirePresence('buy_status', 'create')
+          ->notEmpty('buy_status');
+
 
         return $validator;
     }

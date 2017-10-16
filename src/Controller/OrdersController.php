@@ -42,7 +42,10 @@ class OrdersController extends AppController {
     public function comfirm() {
 
         $this->viewBuilder()->layout('');
-        $cart_data = $this->checkout();
+        // $cart_data = $this->checkout();
+        $cart_data = $this->request->session()->read();
+        var_dump($cart_data);
+        exit();
         //get cart data
         //$this->loadModel('Orders');
         //$this->loadModel('OrderDetails');
