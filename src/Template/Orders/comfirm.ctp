@@ -1,4 +1,3 @@
-
 <!doctype html>
 <html lang="ja">
     <head>
@@ -7,20 +6,14 @@
         <title>ORDER COMFIRM</title>
         <meta name="robots" content="noindex">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-
         <?= $this->Html->meta('icon') ?>
         <?= $this->Html->css('style.css') ?>
         <?= $this->Html->css('slick.css') ?>
         <?= $this->Html->css('default.css') ?>
-
         <!-- for original theme CSS -->
-
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
         <script>window.jQuery || document.write('<script src="jquery-1.11.3.min.js"><\/script>')</script>
-
-
     </head>
-
     <body id="page_shopping" class="other_page">
         <div id="wrapper">
             <header id="header">
@@ -28,60 +21,21 @@
                     <!-- ▼ロゴ -->
                     <div class="header_logo_area">
                         <p class="copy">welcome </p>
-                        <h1 class="header_logo"><a href="http://localhost/eccube-3.0.15/html/">MAMOL EC SITE</a></h1>
+                        <h1 class="header_logo"><a href="#">MAMOL EC SITE</a></h1>
                     </div>
 
-                    <!-- ▲ロゴ -->
-
-                    <!--                     ▼商品検索 
-                                        <div class="drawer_block pc header_bottom_area">
-                                            <div id="search" class="search">
-                  
-                                                    <div class="search_inner">
-                                                        <select id="category_id" name="category_id" class="form-control">
-                                                            <option value="">全ての商品</option>
-                                                            <option value="2">インテリア</option>
-                                                            <option value="1">キッチンツール</option>
-                                                            <option value="4">　調理器具</option>
-                                                            <option value="3">　食器</option>
-                                                            <option value="5">　　フォーク</option>
-                                                            <option value="6">新入荷</option>
-                                                        </select>
-                                                        <div class="input_search clearfix">
-                                                            <input type="search" id="name" name="name" maxlength="50" placeholder="キーワードを入力" class="form-control" />
-                                                            <button type="submit" class="bt_search">
-                                                                <svg class="cb cb-search">
-                                                                <use xlink:href="#cb-search" />
-                                                                </svg>
-                                                            </button>
-                                                        </div>
-                                                    </div>
-                                                    <div class="extra-form"></div>
-                                                </form>
-                                            </div>
-                                        </div>
-                                         ▲商品検索 -->
-                    <!-- ▼ログイン -->
                     <div id="member" class="member drawer_block pc">
                         <ul class="member_link">
+
+
                             <li>
-                                <a href="#">
-                                    <svg class="cb cb-user-circle"><use xlink:href="#cb-user-circle" /></svg>マイページ
-                                </a>
-                            </li>
-                            <li>
-                                <a href="http://localhost/eccube-3.0.15/html/mypage/favorite">
-                                    <svg class="cb cb-heart-circle">
-                                    <use xlink:href="#cb-heart-circle"></use>
-                                    </svg>お気に入り
-                                </a>
-                            </li>
-                            <li>
-                                <a href="http://localhost/eccube-3.0.15/html/logout">
-                                    <svg class="cb cb-lock-circle">
-                                    <use xlink:href="#cb-lock-circle" />
-                                    </svg>ログアウト
-                                </a>
+
+
+                                <?php
+                                echo $this->Html->link(
+                                        "ログアウト", ['controller' => 'users', 'action' => 'logout']
+                                );
+                                ?>
                             </li>
                         </ul>
                     </div>
@@ -113,7 +67,7 @@
             </header>
 
             <div id="contents" class="theme_main_only">
-                <?php echo $this->Form->create($order, ['url' => ['controller' => 'Orders', 'action' => 'add']]); ?>
+<?php echo $this->Form->create($order, ['url' => ['controller' => 'Orders', 'action' => 'add']]); ?>
                 <input type="hidden"  name="form_name" id="form_name" value="orderform"/>
                 <input type="hidden"  name="user_id"  value="<?php echo $cart_data["user_id"]; ?>"/>
                 <input type="hidden"  name="order_email"  value="<?php echo $cart_data["order_email"]; ?>"/>
@@ -132,87 +86,106 @@
                                                 <li><span class="flow_number">3</span><br>完了</li>
                                             </ul>
                                         </div>
-                                    </div><!-- /.col -->
-                                </div><!-- /.row -->
-                                <div id="shopping_confirm" class="row">
-                                    <div id="confirm_main" class="col-sm-8">
-                                        <div id="cart_box" class="cart_item table">
-                                            <div id="cart_box_list" class="tbody">
-                                            
-                                                <?php foreach ($order_detail as $key => $value) { ?>
-                                                    <div id="cart_box_list__item_box--1" class="item_box tr">
+<?php if (count($order_detail) == 0) {
+    ?>
+                                            <div id="cart_box__message" class="message">
+                                                <p class="errormsg bg-danger">
+                                                    <svg class="cb cb-warning"><use xlink:href="#cb-warning"></use></svg>現在カート内に商品はございません。
+                                                </p>
+                                                <p >
+                                                    <svg class="cb cb-warning">                               </p>
+                                            </div>
+<?php } else { ?> 
 
-                                                        <div id="cart_box_list__item--1" class="td table">
-                                                            <div id="cart_box_list__photo--1" class="item_photo">
-                                                                <img src="<?php echo $order_detail[$key]["product_img"]; ?>" />
+                                        </div><!-- /.col -->
+
+                                    </div><!-- /.row -->
+
+                                    <div id="shopping_confirm" class="row">
+                                        <div id="confirm_main" class="col-sm-8">
+                                            <div id="cart_box" class="cart_item table">
+                                                <div id="cart_box_list" class="tbody">
+
+    <?php foreach ($order_detail as $key => $value) { ?>
+                                                        <div id="cart_box_list__item_box--1" class="item_box tr">
+
+                                                            <div id="cart_box_list__item--1" class="td table">
+                                                                <div id="cart_box_list__photo--1" class="item_photo">
+                                                                    <img src="<?php echo $order_detail[$key]["product_img"]; ?>" />
+                                                                </div>
+                                                                <dl id="cart_box_list__detail--1" class="item_detail">
+
+                                                                    <dt id="cart_box_list__name--1" class="item_name text-default"><?php echo $order_detail[$key]["product_name"]; ?></dt>
+
+                                                                    <dd id="cart_box_list__price--1" class="item_price">¥<?php echo $order_detail[$key]["product_price"]; ?>× <?php echo $order_detail[$key]["product_num"]; ?></dd>
+        <?php
+        $p_price = 0;
+        $p_price = $order_detail[$key]["product_price"] * $order_detail[$key]["product_num"];
+        ?>
+
+                                                                    <dd id="cart_box_list__subtotal--1" class="item_subtotal">小計：¥ <?php echo $p_price; ?></dd>
+                                                                </dl>
                                                             </div>
-                                                            <dl id="cart_box_list__detail--1" class="item_detail">
 
-                                                                <dt id="cart_box_list__name--1" class="item_name text-default"><?php echo $order_detail[$key]["product_name"]; ?></dt>
-
-                                                                <dd id="cart_box_list__price--1" class="item_price">¥<?php echo $order_detail[$key]["product_price"]; ?>× <?php echo $order_detail[$key]["product_num"]; ?></dd>
-                                                                <?php
-                                                                $p_price = 0;
-                                                                $p_price = $order_detail[$key]["product_price"] * $order_detail[$key]["product_num"];
-                                                         
-                                                                ?>
-
-                                                                <dd id="cart_box_list__subtotal--1" class="item_subtotal">小計：¥ <?php echo $p_price; ?></dd>
-                                                            </dl>
-                                                        </div>
-
-                                                    </div>  <?php } ?>
+                                                        </div>  <?php } ?>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <p>
-                                            <a id="confirm_box__quantity_edit_button" href="http://localhost/cart" class="btn btn-default btn-sm">
-                                                数量を変更または削除する</a>
-                                        </p>
-                                        <h2 class="heading02">お配送情報</h2>
-                                        <div id="customer_detail_box" class="column is-edit">
-                                            <p id="customer_detail_box__customer_address" class="address">
-                                                <span class="customer-edit customer-addr01"><?php echo $order["order_email"]; ?></span>
-                                                <br>
-
-                                                <span class="customer-edit customer-name01"><?php echo $this->Form->input('荷受人：', ['name' => 'order_name', 'value' => $cart_data["order_name"]]); ?></span>
-                                                <br>
-                                                <span class="customer-edit customer-addr01"><?php echo $this->Form->input('住所：', ['name' => 'order_address', 'value' => $cart_data["order_address"]]); ?></span>
-
-                                                <br>
-                                                <span class="customer-edit customer-tel01"><?php echo $this->Form->input('TEL：', ['name' => 'order_tel', 'value' => $cart_data["order_tel"]]); ?></span>
-                                            </p>
-                                        </div>
-                                        <h2 class="heading02">お支払方法</h2>
-                                        <div id="payment_list" class="column">
-                                            <div id="payment_list__body" class="form-group">
-                                                <ul id="payment_list__list" class="payment_list">
-<?php echo $this->Form->input('クレジットカ—ド：', ['name' => 'credit_code', 'value' => $cart_data["credit_code"]]); ?>
-
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div id="confirm_side" class="col-sm-4">
-                                        <div id="summary_box__total_box" class="total_box">
                                             <p>
-                                                テスト中は免税、無料で配送します。
+
+    <?php
+    echo $this->Html->link(
+            '数量を変更または削除する', ['controller' => 'carts', 'action' => 'obtain'], ['class' => 'btn btn-default btn-sm']
+    );
+    ?>
                                             </p>
+                                            <h2 class="heading02">お配送情報</h2>
+                                            <div id="customer_detail_box" class="column is-edit">
+                                                <p id="customer_detail_box__customer_address" class="address">
+                                                    <span class="customer-edit customer-addr01"><?php echo $order["order_email"]; ?></span>
+                                                    <br>
 
-                                            <div id="summary_box__result" class="total_amount">
-                                                <p id="summary_box__total_amount" class="total_price">合計
-                                                    <strong class="text-primary">¥ <?php echo $cart_data["price"] ?>
+                                                    <span class="customer-edit customer-name01"><?php echo $this->Form->input('荷受人：', ['name' => 'order_name', 'value' => $cart_data["order_name"]]); ?></span>
+                                                    <br>
+                                                    <span class="customer-edit customer-addr01"><?php echo $this->Form->input('住所：', ['name' => 'order_address', 'value' => $cart_data["order_address"]]); ?></span>
 
-                                                    </strong>
-                                                </p>
-                                                <p id="summary_box__confirm_button">
-                                                    <button id="order-button" type="submit" class="btn btn-primary btn-block prevention-btn">注文する</button>
+                                                    <br>
+                                                    <span class="customer-edit customer-tel01"><?php echo $this->Form->input('TEL：', ['name' => 'order_tel', 'value' => $cart_data["order_tel"]]); ?></span>
                                                 </p>
                                             </div>
+                                            <h2 class="heading02">お支払方法</h2>
+                                            <div id="payment_list" class="column">
+                                                <div id="payment_list__body" class="form-group">
+                                                    <ul id="payment_list__list" class="payment_list">
+    <?php echo $this->Form->input('クレジットカ—ド：', ['name' => 'credit_code', 'value' => $cart_data["credit_code"]]); ?>
+
+                                                    </ul>
+                                                </div>
+                                            </div>
                                         </div>
-                                    </div>
-                                </div><!-- /.row -->
-                                </form>
-                            </div>
+                                        <div id="confirm_side" class="col-sm-4">
+                                            <div id="summary_box__total_box" class="total_box">
+                                                <p>
+                                                    テスト中は免税、無料で配送します。
+                                                </p>
+
+                                                <div id="summary_box__result" class="total_amount">
+                                                    <p id="summary_box__total_amount" class="total_price">合計
+                                                        <strong class="text-primary">¥ <?php echo $cart_data["price"] ?>
+
+                                                        </strong>
+                                                    </p>
+                                                    <p id="summary_box__confirm_button">
+                                                        <button id="order-button" type="submit" class="btn btn-primary btn-block prevention-btn">注文する</button>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div> </form>
+                                    </div><!-- /.row -->
+<?php } ?>
+                            </div>       
+
+                            <p><a href="javascript:window.history.back(-1);"><返回上一页</a></p>
+
                         </div>
                     </div>
                 </div>
@@ -221,10 +194,10 @@
                     <!-- ▼フッター -->
                     <div class="container-fluid inner">
                         <ul>
-                            <li><a href="http://localhost/eccube-3.0.15/html/help/about">当サイトについて</a></li>
-                            <li><a href="http://localhost/eccube-3.0.15/html/help/privacy">プライバシーポリシー</a></li>
-                            <li><a href="http://localhost/eccube-3.0.15/html/help/tradelaw">特定商取引法に基づく表記</a></li>
-                            <li><a href="http://localhost/eccube-3.0.15/html/contact">お問い合わせ</a></li>
+                            <li><a href="#">当サイトについて</a></li>
+                            <li><a href="#">プライバシーポリシー</a></li>
+                            <li><a href="#">特定商取引法に基づく表記</a></li>
+                            <li><a href="#">お問い合わせ</a></li>
                         </ul>
                         <div class="footer_logo_area">
                             <p class="logo"><a href="http://localhost/eccube-3.0.15/html/">ec_cube</a></p>
@@ -241,10 +214,10 @@
         </div>
 
         <div class="overlay"></div>
-        <?= $this->Html->script('bootstrap.custom.min'); ?>
+<?= $this->Html->script('bootstrap.custom.min'); ?>
         <?= $this->Html->script('slick.min.min'); ?>
-<?= $this->Html->script('function'); ?>
-<?= $this->Html->script('eccube'); ?>
+        <?= $this->Html->script('function'); ?>
+        <?= $this->Html->script('eccube'); ?>
 
     </body>
 </html>
