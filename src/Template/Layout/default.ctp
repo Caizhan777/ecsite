@@ -26,11 +26,18 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
     </title>
     <?= $this->Html->meta('icon') ?>
 
-
     <?= $this->Html->css('style.css') ?>
     <?= $this->Html->css('bootstrap.custom.min.css') ?>
     <?= $this->Html->css('slick.css') ?>
     <?= $this->Html->css('default.css') ?>
+
+
+    <?= $this->Html->script('jquery.min'); ?>
+    <?= $this->Html->script('jquery-1.11.3.min'); ?>
+    <?= $this->Html->script('slick.min'); ?>
+    <?= $this->Html->script('function'); ?>
+    <?= $this->Html->script('eccube'); ?>
+    <?= $this->Html->script('bootstrap.custom.min'); ?>
 
 
     <?= $this->fetch('meta') ?>
@@ -57,6 +64,7 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
             <div class="header_logo_area">
                 <p class="copy">くらしを楽しむライフスタイルグッズ</p >
                 <h1 class="header_logo"><a href=" ">ec_cube</a ></h1>
+
                 </div>
 
 <!-- ▲ロゴ -->
@@ -67,43 +75,50 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
                             <svg class="cb cb-shopping-cart">
                                 <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#cb-shopping-cart"></use>
                             </svg>
-                            <span class="badge"><?php if(isset($cart)){echo count($cart);}else{1;} ?></span>
+
+                            <span class="badge"><?php if(isset($cart)){echo count($cart);}else{echo 0;} ?></span>
                             <svg class="cb cb-close">
                                 <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#cb-close"></use>
                             </svg>
-                        </a >
+                        </a>
                         <?php $jiage=0; ?>
                         <?php
                         if(isset($cart)){
                             for($i=0;$i<count($cart);$i++){
-                            $jiage+=$cart[$i]['Product.price']*$cart[$i]['Buy.num'];
+                            $jiage+=$cart[$i]['Product.price']*$cart[$i]['buy.num'];
                             }
                         }?>
                         <span class="cart_price pc">合計
-                            <span class="price">¥ <?php if(isset($jiage)){echo $jiage;}else{0;} ?></span>
+                            <span class="price">¥ <?php if(isset($jiage)){echo $jiage;}else{echo 0;} ?></span>
                         </span>
-                    </p >
+                    </p>
                     <div id="cart" class="cart">
                         <div class="inner">
                             <div class="item_box clearfix">
-                                <div class="item_photo">
-                                    < img src="fork-1.jpg" alt="ディナーフォーク"></div>
+                                <!-- <div class="item_photo">
+
+                                    <img src="fork-1.jpg" alt="ディナーフォーク">
+                                </div> -->
+                            <?php if(isset($cart)){
+                            for($i=0;$i<count($cart);$i++){ ?>
                             <dl class="item_detail">
-                                <dt class="item_name">ディナーフォーク</dt>
-                                <dd class="item_pattern small">材質：プラチナ
-サイズ：150cm</dd>
-                                <dd class="item_price">¥ 118,800<span class="small">税込</span></dd>
-                                <dd class="item_quantity form-group form-inline">数量：1</dd>
+                                <dt class="item_name"><?= $cart[$i]['Product.name']?></dt>
+                                <dd class="item_pattern small"><br></dd>
+                                <dd class="item_price">¥ <?= $cart[$i]['Product.price']?><span class="small">税込</span></dd>
+                                <dd class="item_quantity form-group form-inline">数量：<?= $cart[$i]['buy.num'] ?></dd>
                             </dl>
+                            <?php }} ?>
                             </div><!--/item_box-->
                             <p class="cart_price sp">合計
                                 <span class="price"><?=$jiage ?></span>
-                            </p >
+                            </p>
+
 
                             <div class="btn_area">
                                 <ul>
                                     <li>
-                                        <a href="http://localhost/eccube-3.0.15/html/cart" class="btn btn-primary">カートへ進む</a >
+                                        <a href="http://localhost/eccube-3.0.15/html/cart" class="btn btn-primary">カートへ進む</a>
+
                                     </li>
                                     <li>
                                         <button type="button" class="btn btn-default btn-sm cart-trigger">キャンセル</button>
@@ -148,21 +163,27 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
                         <li>
                             <a href="http://localhost/eccube-3.0.15/html/mypage">
                                 <svg class="cb cb-user-circle"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#cb-user-circle"></use></svg>マイページ
-                            </a >
+
+                            </a>
+
                         </li>
                         <li>
                             <a href="http://localhost/eccube-3.0.15/html/mypage/favorite">
                                 <svg class="cb cb-heart-circle">
                                     <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#cb-heart-circle"></use>
                                 </svg>お気に入り
-                            </a >
+
+                            </a>
+
                         </li>
                         <li>
                             <a href="http://localhost/eccube-3.0.15/html/logout">
                                 <svg class="cb cb-lock-circle">
                                     <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#cb-lock-circle"></use>
                                 </svg>ログアウト
-                            </a >
+
+                            </a>
+
                         </li>
                     </ul>
                 </div>
@@ -173,6 +194,7 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
                 <nav id="category" class="drawer_block pc">
                     <ul class="category-nav">
                         <li>
+
                             <a href="http://localhost/eccube-3.0.15/html/products/list?category_id=2">インテリア</a >
                         </li>
                         <li>
@@ -186,26 +208,51 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
                                     <a href="http://localhost/eccube-3.0.15/html/products/list?category_id=3">食器</a >
                                         <ul>
                                             <li><a href="http://localhost/eccube-3.0.15/html/products/list?category_id=5">フォーク</a ></li>
+
                                         </ul>
                                 </li>
 
                             </ul>
                         </li>
                         <li>
-                            <a href="http://localhost/eccube-3.0.15/html/products/list?category_id=6">新入荷</a >
+                            <a href="http://localhost/eccube-3.0.15/html/products/list?category_id=6">新入荷</a>
                         </li>
                     </ul> <!-- category-nav -->
                 </nav>
 
         <!-- ▲カテゴリ -->
 
-                <p id="btn_menu"><a class="nav-trigger" href="#nav">Menu<span></span></a ></p >
+
+                <p id="btn_menu"><a class="nav-trigger" href="#nav">Menu<span></span></a></p>
+
             </div>
         </header>
 
         <?= $this->Flash->render() ?>
-
         <?= $this->fetch('content') ?>
 
 </div>
 </body>
+
+
+
+
+<!-- <body>
+    <nav class="top-bar expanded" data-topbar role="navigation">
+        <ul class="title-area large-3 medium-4 columns">
+            <li class="name">
+                <h1><a href=""><?= $this->fetch('title') ?></a></h1>
+            </li>
+        </ul>
+        <div class="top-bar-section">
+            <ul class="right">
+                <li><a target="_blank" href="https://book.cakephp.org/3.0/">Documentation</a></li>
+                <li><a target="_blank" href="https://api.cakephp.org/3.0/">API</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <footer>
+    </footer>
+</body> -->
+</html>
