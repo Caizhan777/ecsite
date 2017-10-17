@@ -3,6 +3,7 @@ namespace App\Controller;
 
 use App\Controller\AppController;
 use App\Form\SearchProductForm;
+use Cake\ORM\Table;
 
 class ProductsController extends AppController
 {
@@ -38,6 +39,13 @@ class ProductsController extends AppController
       } else {
         $products = $this->paginate($this->Products);
       }
+
+        $query = $this->Products->find('all');
+        $data = $query->toArray();
+        $data_count = count($data);
+
+
+        $this->set(compact('data_count'));
         $this->set(compact('products'));
         $this->set(compact('searchProductForm'));
         $this->set('_serialize', ['products']);
@@ -55,8 +63,12 @@ class ProductsController extends AppController
         // var_dump($product);
         // exit();
         if($this->request->is('post')) {
-          if($this->request->getData("id")){
+          // var_dump($this->request->is('post'));
+          // exit();
 
+          if($this->request->getData("id")){
+            // var_dump($this->request->getData("id"));
+            // exit();
             $session = $this->request->session();
 
             if($session->check('cart.info')){
@@ -102,7 +114,7 @@ class ProductsController extends AppController
             return $this->redirect(['controller' => 'Carts','action' => 'obtain']);
 
           }
-          $this->Flash->error(__('jia ru gou wu che shi bai .'));
+          // $this->Flash->error(__('jia ru gou wu che shi bai .'));
         }
 
          $this->set('product', $product);
