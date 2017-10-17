@@ -57,15 +57,14 @@ class UsersController extends AppController
               // $request_data['user_name'] = $this->request->getData('name');
               // $request_data['user_address'] = $this->request->getData('address');
               // $request_data['user_tel'] = $this->request->getData('telphone');
-              //
-              // $user = $this->Users->patchEntity($user, $request_data);
-              $user->user_email = $request_data['email'];
-              $user->user_password = $request_data['password'];
-              $user->user_name = $request_data['name'];
-              $user->user_address = $request_data['address'];
-              $user->user_tel = $request_data['telphone'];
-              // var_dump($user);exit();
 
+              // $user = $this->Users->patchEntity($user, $this->request->getData());
+              $user->user_email = $request_data['user_email'];
+              $user->user_password = $request_data['user_password'];
+              $user->user_name = $request_data['user_name'];
+              $user->user_address = $request_data['user_address'];
+              $user->user_tel = $request_data['user_tel'];
+              // var_dump($user);exit();
               if ($this->Users->save($user)) {
                   $this->Flash->success(__('The user has been saved.'));
 
