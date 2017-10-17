@@ -50,7 +50,7 @@ class CreateOrders extends AbstractMigration
         $table->addColumn('del_flg', 'string', [
             'default' => 0,
             'null' => false,
-            
+
         ]);
         $table->addColumn('buy_status', 'string', [
             'default' => null,

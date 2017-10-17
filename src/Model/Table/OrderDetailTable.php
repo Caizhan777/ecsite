@@ -16,11 +16,15 @@ class OrderDetailTable extends Table {
      * @return void
      */
     public function initialize(array $config) {
+
         parent::initialize($config);
+
         $this->setTable('order_detail');
         $this->setDisplayField('id');
         $this->setPrimaryKey('id');
+
         $this->addBehavior('Timestamp');
+
         $this->belongsTo('Orders', [
             'foreignKey' => 'order_id',
         ]);

@@ -57,26 +57,25 @@ class UsersController extends AppController
               // $request_data['user_name'] = $this->request->getData('name');
               // $request_data['user_address'] = $this->request->getData('address');
               // $request_data['user_tel'] = $this->request->getData('telphone');
-              //
-              // $user = $this->Users->patchEntity($user, $request_data);
-              $user->user_email = $request_data['email'];
-              $user->user_password = $request_data['password'];
-              $user->user_name = $request_data['name'];
-              $user->user_address = $request_data['address'];
-              $user->user_tel = $request_data['telphone'];
-              // var_dump($user);exit();
 
+              // $user = $this->Users->patchEntity($user, $this->request->getData());
+              $user->user_email = $request_data['user_email'];
+              $user->user_password = $request_data['user_password'];
+              $user->user_name = $request_data['user_name'];
+              $user->user_address = $request_data['user_address'];
+              $user->user_tel = $request_data['user_tel'];
+              // var_dump($user);exit();
               if ($this->Users->save($user)) {
                   $this->Flash->success(__('The user has been saved.'));
 
-                  $email = new Email('default');
-                  $email->from(['wanghb1324@gmail.com' => 'My Site'])
-                      ->to($user->user_email)
-                      ->subject('Successful')
-                      ->send("亲爱的".$user->user_name."：
-                      感谢您在我站注册了新帐号。请点击链接激活您的帐号。
-                      http://localhost/ecsite/users/identification/".$user->id."
-                      如果以上链接无法点击，请将它复制到你的浏览器地址栏中进入访问。");
+                  // $email = new Email('default');
+                  // $email->from(['wanghb1324@gmail.com' => 'My Site'])
+                  //     ->to($user->user_email)
+                  //     ->subject('Successful')
+                  //     ->send("亲爱的".$user->user_name."：
+                  //     感谢您在我站注册了新帐号。请点击链接激活您的帐号。
+                  //     http://localhost/ecsite/users/identification/".$user->id."
+                  //     如果以上链接无法点击，请将它复制到你的浏览器地址栏中进入访问。");
 
                   return $this->redirect(['action' => 'login']);
               }

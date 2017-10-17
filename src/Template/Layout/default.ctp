@@ -33,7 +33,6 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
     <?= $this->Html->css('default.css') ?>
 
 
-
     <?= $this->fetch('meta') ?>
     <?= $this->fetch('css') ?>
     <?= $this->fetch('script') ?>
@@ -43,10 +42,7 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>ec_cube / ディナーフォーク</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="icon" href="favicon.ico">
-    <link rel="stylesheet" href="style.css?v=3.0.15">
-    <link rel="stylesheet" href="slick.css?v=3.0.15">
-    <link rel="stylesheet" href="default.css?v=3.0.15">
+
 <!-- for original theme CSS -->
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>

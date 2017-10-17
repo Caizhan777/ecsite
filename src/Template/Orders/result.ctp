@@ -101,6 +101,8 @@
                                     </div><!-- /.col -->
                                 </div><!-- /.row -->
                                 <div class="centered-text center-block"><center><?php echo $result; ?></center></div>
+                                <p class="centered-text"><a onclick="javascript:window.history.back(-1);" herf="#"><返回上一页</a></p>
+
                             </div>
                         </div>
                     </div>
